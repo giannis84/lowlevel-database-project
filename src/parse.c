@@ -81,11 +81,11 @@ int validate_db_header(int fd, struct dbheader_t **headerOut) {
     return STATUS_SUCCESS;
 }
 
-void output_file(int fd, struct dbheader_t *dbhdr) {
+int output_file(int fd, struct dbheader_t *dbhdr, struct employee_t *employee) {
     if (fd < 0) {
         printf("Received an invalid database file descriptor\n");
 
-        // return STATUS_ERROR;
+        return STATUS_ERROR;
     }
     dbhdr->magic = htonl(dbhdr->magic);
     dbhdr->filesize = htonl(dbhdr->filesize);
@@ -95,5 +95,5 @@ void output_file(int fd, struct dbheader_t *dbhdr) {
     lseek(fd, 0, SEEK_SET);
     write(fd, dbhdr, sizeof(struct dbheader_t));
 
-    return;
+    return STATUS_SUCCESS;
 }

@@ -20,6 +20,7 @@ int main(int argc, char *argv[]) {
     int c;
     int dbfd = -1;
     struct dbheader_t *dbhdr = NULL;
+    struct employee_t *employees = NULL;
 
     while ((c = getopt(argc, argv, "nf:")) != -1) {
         switch (c) {
@@ -74,8 +75,8 @@ int main(int argc, char *argv[]) {
 
     printf("Newfile %d\n", newfile);
     printf("Filepath: %s\n", filepath);
-
-    output_file(dbfd, dbhdr);
+    
+    output_file(dbfd, dbhdr, employees);
 
     return STATUS_SUCCESS;
 }
