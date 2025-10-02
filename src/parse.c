@@ -11,14 +11,9 @@
 #include "parse.h"
 
 int create_db_header(struct dbheader_t **headerOut) {
-    if (*headerOut == NULL) {
-        printf("NULL header\n");
-        
-        return STATUS_ERROR;
-    } 
 
     struct dbheader_t *header = calloc(1, sizeof(struct dbheader_t));
-    if (header == -1) {
+    if (header == -1 || header == NULL) {
         printf("Calloc failed to create db header\n");
         
         return STATUS_ERROR;
