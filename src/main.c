@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <stdbool.h>
 #include <getopt.h>
 
@@ -19,7 +20,7 @@ int main(int argc, char *argv[]) {
     bool newfile = false;
     int c;
     int dbfd = -1;
-    struct dbheader_t *dbhdr = NULL;
+    struct dbheader_t *dbhdr = calloc(1, sizeof(struct dbheader_t));
     struct employee_t *employees = NULL;
 
     while ((c = getopt(argc, argv, "nf:")) != -1) {
