@@ -16,10 +16,10 @@ struct employee_t {
     unsigned int hours;
 };
 
-int create_db_header(int fd, struct dbheader_t **headerOut);
+int create_db_header(struct dbheader_t **headerOut);
 int validate_db_header(int fd, struct dbheader_t **headerOut);
 void output_file(int fd, struct dbheader_t *);
-// int read_employees(int fd, struct dbheader_t *, struct employee_t **employeesOut);
+int read_employees(int fd, struct dbheader_t *, struct employee_t **employeesOut);
 
 
 #endif // !PARSE_H
