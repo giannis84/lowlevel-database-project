@@ -11,22 +11,20 @@
 #include "parse.h"
 
 int create_db_header(struct dbheader_t **headerOut) {
+	struct dbheader_t *header = calloc(1, sizeof(struct dbheader_t));
+	if (header == NULL) {
+		printf("Malloc failed to create db header\n");
+		return STATUS_ERROR;
+	}
 
-    struct dbheader_t *header = calloc(1, sizeof(struct dbheader_t));
-    if (header == -1 || header == NULL) {
-        printf("Calloc failed to create db header\n");
-        
-        return STATUS_ERROR;
-    }
+	header->version = 0x1;
+	header->count = 0;
+	header->magic = HEADER_MAGIC;
+	header->filesize = sizeof(struct dbheader_t);
 
-    header->version = 0x1;
-    header->count = 0;
-    header->magic = HEADER_MAGIC;
-    header->filesize = sizeof(struct dbheader_t);
+	*headerOut = header;
 
-    *headerOut = header;
-    
-    return STATUS_SUCCESS;
+	return STATUS_SUCCESS;
 }
 
 
