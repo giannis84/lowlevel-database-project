@@ -81,9 +81,6 @@ int validate_db_header(int fd, struct dbheader_t **headerOut) {
 }
 
 int output_file(int fd, struct dbheader_t *dbhdr, struct employee_t *employee) {
-    if (dbhdr == NULL) {
-        return STATUS_ERROR;
-    }
     if (fd < 0) {
         printf("Received an invalid database file descriptor\n");
 
